@@ -1,0 +1,57 @@
+import tkinter as tk  # interface graphique
+from tkinter import messagebox  # boîte de dialogue du tkinter dans python
+
+# Création de la fenêtre principale
+app = tk.Tk() # stoker la fenêtre principale de tkinter dans la variable 'app'
+app.title("Gestionnaire de Tâches") # titre de la fenêtre
+app.geometry("800x800") # taille de la fenêtre
+
+# Liste des tâches
+taches = [] #création d'une liste vide pour s'en servir plus tard en rajoutant des éléments dans les crochets []
+
+# Ajouter une tâche
+def ajouter_tache():# définit la fonction 'ajouter_tache' sans paramètre précis car elle intéragit directement avec des variables
+    tache = entree_tache.get() # méthode pour obtenir un contenu saisi par l'utilisateur et qui est stockée dans la variable tache
+    if tache:
+        taches.append(tache)
+        liste_taches.insert(tk.END, tache)
+        entree_tache.delete(0, tk.END)
+    else:
+        messagebox.showwarning("Erreur", "Veuillez entrer une tâche.")
+
+# Supprimer la tâche sélectionnée
+def supprimer_tache():
+    try:
+        index = liste_taches.curselection()[0]
+        taches.pop(index)
+        liste_taches.delete(index)
+    except IndexError:
+        messagebox.showwarning("Erreur", "Veuillez sélectionner une tâche.")
+
+# Vider toutes les tâches
+def vider_taches():
+    if messagebox.askyesno("Confirmation", "Voulez-vous vraiment supprimer toutes les tâches ?"):
+        taches.clear()
+        liste_taches.delete(0, tk.END)
+
+# Interface graphique
+label = tk.Label(app, text="Entrez votre tâche :", font=("Arial", 14))
+label.pack(pady=10)
+
+entree_tache = tk.Entry(app, width=30, font=("Arial", 14))
+entree_tache.pack(pady=5)
+
+bouton_ajouter = tk.Button(app, text="Ajouter", command=ajouter_tache, bg="lightgreen")
+bouton_ajouter.pack(pady=5)
+
+liste_taches = tk.Listbox(app, width=50, height=10, font=("Arial", 12))
+liste_taches.pack(pady=5)
+
+bouton_supprimer = tk.Button(app, text="Supprimer", command=supprimer_tache, bg="lightcoral")
+bouton_supprimer.pack(pady=5)
+
+bouton_vider = tk.Button(app, text="Vider la liste", command=vider_taches, bg="lightblue")
+bouton_vider.pack(pady=5)
+
+# Lancement de l'application
+app.mainloop()
