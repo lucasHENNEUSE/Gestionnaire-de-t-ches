@@ -1,0 +1,6 @@
+Ce que je pourrai rajouter pour améliorer mon projet:
+
+- Sauvegarde des tâches dans un fichier .txt ou .json pour conserver les données entre deux utilisations
+- Ajouter une case à cocher (checkbox) pour marquer les tâches comme "terminées"
+- Ajout d'une date/heure de création ou d’échéance pour chaque tâche pour nous aider lors de la création d'un diagramme de GANTT
+- Ajout d'une barre de recherche pour filtrer les tâches
